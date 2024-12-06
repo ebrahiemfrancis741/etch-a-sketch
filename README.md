@@ -1,0 +1,1 @@
+This app is like a sketchpad / Etch-A-Sketch.
