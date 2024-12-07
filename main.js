@@ -1,4 +1,7 @@
 
+// this will increase by 0.1 every grid mouseover event
+let alpha = 0.0;
+
 // Creates a size x size grid
 function createGrid(size){
   let gridContainer = document.querySelector(".grid");
@@ -25,7 +28,16 @@ function addGridEventListener(){
   let gridBlock;
   gridContainer.addEventListener("mouseover", (event) => {
     gridBlock = event.target;
-    gridBlock.style.backgroundColor = "green";
+    
+    //reset alpha when it reaches max alpha
+    if(alpha >= 0.99){
+      alpha = 0.0;
+    }
+    alpha += 0.1;
+    console.log(alpha);
+    gridBlock.style.backgroundColor = 
+    `rgba(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255}, ${alpha})`;
+    
   });
 }
 
