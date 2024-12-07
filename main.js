@@ -1,6 +1,13 @@
 
+// Creates a size x size grid
 function createGrid(size){
   let gridContainer = document.querySelector(".grid");
+  /* 
+    Empty the grid first because we can call this multiple times from the click
+    event on the resize button, since the grid will have to be replaced.
+  */
+  gridContainer.replaceChildren();
+
   let newDiv;
   for(let i = 0; i< (size * size); i++){
     newDiv = document.createElement("div");
@@ -12,4 +19,36 @@ function createGrid(size){
   }
 }
 
+function addGridEventListener(){
+  let gridContainer = document.querySelector(".grid-container");
+  // a single block in the grid that generated the event
+  let gridBlock;
+  gridContainer.addEventListener("mouseover", (event) => {
+    gridBlock = event.target;
+    gridBlock.style.backgroundColor = "green";
+  });
+}
+
+function addResizeEventListener(){
+  let resizeButton = document.querySelector("#button-resize");
+  let size = 0;
+  resizeButton.addEventListener("click", () => {
+
+    do {
+      size = parseInt(prompt("Enter grid size 1-100 (non numbers will be ignored)"));
+    } while(size < 0 || size > 100);
+    
+    /*
+      check to see if the user pressed cancel, which will result 
+      in size being NaN
+    */
+    if(!(Number.isNaN(size))){
+      createGrid(size);
+    }
+
+  });
+}
+
 createGrid(16);
+addGridEventListener();
+addResizeEventListener();
