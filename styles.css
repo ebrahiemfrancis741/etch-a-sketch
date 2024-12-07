@@ -26,7 +26,15 @@ body{
 .grid{
   width: 768px;
   height: 768px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+}
+
+.grid-block{
+  border: 1px solid lightgray;
+  /* flex-grow: 1; */
 }
 
 .button-container{
